@@ -47,8 +47,10 @@
                                     <td class="text-center">
                                         <a href="{{ route('admin.dashboard.examinations.show', $examination) }}"
                                             class="btn btn-success">More Details</a>
-                                        <a href="{{ route('admin.dashboard.examinations.edit', $examination) }}"
-                                            class="btn btn-info">Edit</a>
+                                        @if (auth()->user()->type == 'Doctor')
+                                            <a href="{{ route('admin.dashboard.examinations.edit', $examination) }}"
+                                                class="btn btn-info">Edit</a>
+                                        @endif
                                         <form action="{{ route('admin.dashboard.examinations.destroy', $examination) }}"
                                             method="post" class="d-inline">
                                             @csrf

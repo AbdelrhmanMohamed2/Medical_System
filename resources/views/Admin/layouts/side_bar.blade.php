@@ -1,6 +1,6 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="{{route('admin.dashboard.index')}}" class="brand-link">
+    <a href="{{ route('admin.dashboard.index') }}" class="brand-link">
         <img src="{{ asset('Admin') }}/dist/img/AdminLTELogo.png" alt="AdminLTE Logo"
             class="brand-image img-circle elevation-3" style="opacity: .8">
         <span class="brand-text font-weight-light">Medical-System</span>
@@ -11,11 +11,12 @@
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
-                <img src="{{ asset('uploads/' . strtolower(auth()->user()->type)  . '/'. (auth()->user()->image ?? 'default_image.png') ) }}" class="img-circle elevation-2"
-                    alt="User Image">
+                <img src="{{ asset('uploads/' . strtolower(auth()->user()->type) . '/' . (auth()->user()->image ?? 'default_image.png')) }}"
+                    class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
-                <a href="{{ route('admin.dashboard.profile')}}" class="d-block">{{ auth()->user()->type }} : {{ auth()->user()->name }}</a>
+                <a href="{{ route('admin.dashboard.profile') }}" class="d-block">{{ auth()->user()->type }} :
+                    {{ auth()->user()->name }}</a>
             </div>
         </div>
 
@@ -25,6 +26,7 @@
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                 data-accordion="false">
 
+                @if (auth()->user()->type == 'Admin')
 
                 {{-- doctors --}}
                 <li class="nav-item">
@@ -55,32 +57,6 @@
                     </ul>
                 </li>
 
-                {{-- patients --}}
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="fa-solid fa-hospital-user"></i>
-                        <p>
-                            Patients
-                            <i class="right fas fa-angle-left"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item pl-3">
-                            <a href="{{ route('admin.dashboard.patients.index') }}" class="nav-link">
-                                <i class="fa-solid fa-hospital"></i>
-                                <p>All Patients</p>
-                            </a>
-                        </li>
-
-                        <li class="nav-item  pl-3">
-                            <a href="{{ route('admin.dashboard.patients.create') }}" class="nav-link">
-                                <i class="fa-solid fa-bed-pulse"></i>
-                                <p>Add New Patient</p>
-                            </a>
-                        </li>
-
-                    </ul>
-                </li>
 
                 {{-- Specialties --}}
                 <li class="nav-item">
@@ -121,14 +97,14 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item pl-3">
-                            <a href="{{ route('admin.dashboard.admins.index')}}" class="nav-link">
+                            <a href="{{ route('admin.dashboard.admins.index') }}" class="nav-link">
                                 <i class="fa-solid fa-users-gear"></i>
                                 <p>All Admins</p>
                             </a>
                         </li>
 
                         <li class="nav-item pl-3">
-                            <a href="{{ route('admin.dashboard.admins.create')}}" class="nav-link">
+                            <a href="{{ route('admin.dashboard.admins.create') }}" class="nav-link">
                                 <i class="fa-solid fa-user-plus"></i>
                                 <p>Add New Admin</p>
                             </a>
@@ -136,6 +112,37 @@
 
                     </ul>
                 </li>
+
+                @endif
+
+                @if (in_array(auth()->user()->type, ['Admin', 'Doctor']))
+                    {{-- patients --}}
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="fa-solid fa-hospital-user"></i>
+                            <p>
+                                Patients
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item pl-3">
+                                <a href="{{ route('admin.dashboard.patients.index') }}" class="nav-link">
+                                    <i class="fa-solid fa-hospital"></i>
+                                    <p>All Patients</p>
+                                </a>
+                            </li>
+
+                            <li class="nav-item  pl-3">
+                                <a href="{{ route('admin.dashboard.patients.create') }}" class="nav-link">
+                                    <i class="fa-solid fa-bed-pulse"></i>
+                                    <p>Add New Patient</p>
+                                </a>
+                            </li>
+
+                        </ul>
+                    </li>
+                @endif
 
             </ul>
         </nav>

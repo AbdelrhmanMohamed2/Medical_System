@@ -24,6 +24,33 @@ Route::middleware(['auth', 'IsAdminOrDoctor'])->prefix('dashboard')->name('dashb
         Route::patch('/update-password', 'update_password')->name('update-password');
     });
 
+    Route::controller(PatientController::class)->prefix('patients')->name('patients.')->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('/create', 'create')->name('create');
+        Route::post('/', 'store')->name('store');
+        Route::get('/{patient}/edit', 'edit')->name('edit');
+        Route::put('/{patient}', 'update')->name('update');
+        Route::get('/{patient}', 'show')->name('show');
+        Route::delete('/{patient}', 'destroy')->name('destroy');
+    });
+
+    Route::controller(ExaminationController::class)->prefix('examinations')->name('examinations.')->group(function () {
+        Route::middleware(['IsDoctor'])->group(function () {
+            Route::get('/create/{patient}', 'create')->name('create');
+            Route::post('/', 'store')->name('store');
+            Route::get('/{examination}/edit', 'edit')->name('edit');
+            Route::put('/{examination}', 'update')->name('update');
+        });
+        Route::get('/patient/{patient}', 'index')->name('index');
+        Route::get('/{examination}', 'show')->name('show');
+        Route::delete('/{examination}', 'destroy')->name('destroy');
+        Route::get('/download/{examination}', 'download')->name('download');
+        Route::get('/downloadPDF/{examination}', 'downloadPDF')->name('downloadPDF');
+    });
+});
+
+Route::middleware(['auth', 'IsAdmin'])->prefix('dashboard')->name('dashboard.')->group(function () {
+
     Route::controller(SpecialtyController::class)->prefix('specialties')->name('specialty.')->group(function () {
 
         Route::get('/', 'index')->name('index');
@@ -52,28 +79,6 @@ Route::middleware(['auth', 'IsAdminOrDoctor'])->prefix('dashboard')->name('dashb
         Route::put('/{user}', 'update')->name('update');
         // Route::get('/{user}', 'show')->name('show');
         Route::delete('/{user}', 'destroy')->name('destroy');
-    });
-
-    Route::controller(PatientController::class)->prefix('patients')->name('patients.')->group(function () {
-        Route::get('/', 'index')->name('index');
-        Route::get('/create', 'create')->name('create');
-        Route::post('/', 'store')->name('store');
-        Route::get('/{patient}/edit', 'edit')->name('edit');
-        Route::put('/{patient}', 'update')->name('update');
-        Route::get('/{patient}', 'show')->name('show');
-        Route::delete('/{patient}', 'destroy')->name('destroy');
-    });
-
-    Route::controller(ExaminationController::class)->prefix('examinations')->name('examinations.')->group(function () {
-        Route::get('/patient/{patient}', 'index')->name('index');
-        Route::get('/create/{patient}', 'create')->name('create');
-        Route::post('/', 'store')->name('store');
-        Route::get('/{examination}/edit', 'edit')->name('edit');
-        Route::put('/{examination}', 'update')->name('update');
-        Route::get('/{examination}', 'show')->name('show');
-        Route::delete('/{examination}', 'destroy')->name('destroy');
-        Route::get('/download/{examination}', 'download')->name('download');
-        Route::get('/downloadPDF/{examination}', 'downloadPDF')->name('downloadPDF');
     });
 });
 

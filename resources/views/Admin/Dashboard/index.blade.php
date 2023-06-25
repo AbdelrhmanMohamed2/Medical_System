@@ -21,22 +21,6 @@
 
 @section('content')
     <div class="row">
-        <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-info">
-                <div class="inner">
-                    <h3>{{ $doctorCount }}</h3>
-
-                    <p>Doctors</p>
-                </div>
-                <div class="icon">
-                    <i class="fa-solid fa-user-doctor"></i>
-                </div>
-                <a href="{{ route('admin.dashboard.doctors.index') }}" class="small-box-footer">Show Doctors <i
-                        class="fas fa-arrow-circle-right"></i></a>
-            </div>
-
-        </div>
 
         <div class="col-lg-3 col-6">
 
@@ -55,39 +39,58 @@
             </div>
         </div>
 
-        <div class="col-lg-3 col-6">
+        @if (auth()->user()->type == 'Admin')
+            <div class="col-lg-3 col-6">
+                <!-- small box -->
+                <div class="small-box bg-info">
+                    <div class="inner">
+                        <h3>{{ $doctorCount }}</h3>
 
-            <!-- small box -->
-            <div class="small-box bg-primary">
-                <div class="inner">
-                    <h3>{{ $specialtyCount }}</h3>
+                        <p>Doctors</p>
+                    </div>
+                    <div class="icon">
+                        <i class="fa-solid fa-user-doctor"></i>
+                    </div>
+                    <a href="{{ route('admin.dashboard.doctors.index') }}" class="small-box-footer">Show Doctors <i
+                            class="fas fa-arrow-circle-right"></i></a>
+                </div>
 
-                    <p>Specialties</p>
-                </div>
-                <div class="icon">
-                    <i class="fa-solid fa-hand-holding-medical"></i>
-                </div>
-                <a href="{{ route('admin.dashboard.specialty.index') }}" class="small-box-footer">Show Specialties <i
-                        class="fas fa-arrow-circle-right"></i></a>
             </div>
-        </div>
 
-        <div class="col-lg-3 col-6">
+            <div class="col-lg-3 col-6">
 
-            <!-- small box -->
-            <div class="small-box bg-danger">
-                <div class="inner">
-                    <h3>{{ $adminCount }}</h3>
+                <!-- small box -->
+                <div class="small-box bg-primary">
+                    <div class="inner">
+                        <h3>{{ $specialtyCount }}</h3>
 
-                    <p>Admins</p>
+                        <p>Specialties</p>
+                    </div>
+                    <div class="icon">
+                        <i class="fa-solid fa-hand-holding-medical"></i>
+                    </div>
+                    <a href="{{ route('admin.dashboard.specialty.index') }}" class="small-box-footer">Show Specialties <i
+                            class="fas fa-arrow-circle-right"></i></a>
                 </div>
-                <div class="icon">
-                    <i class="fa-solid fa-user-shield"></i>
-                </div>
-                <a href="{{ route('admin.dashboard.admins.index') }}" class="small-box-footer">Show Admins <i
-                        class="fas fa-arrow-circle-right"></i></a>
             </div>
-        </div>
+
+            <div class="col-lg-3 col-6">
+
+                <!-- small box -->
+                <div class="small-box bg-danger">
+                    <div class="inner">
+                        <h3>{{ $adminCount }}</h3>
+
+                        <p>Admins</p>
+                    </div>
+                    <div class="icon">
+                        <i class="fa-solid fa-user-shield"></i>
+                    </div>
+                    <a href="{{ route('admin.dashboard.admins.index') }}" class="small-box-footer">Show Admins <i
+                            class="fas fa-arrow-circle-right"></i></a>
+                </div>
+            </div>
+        @endif
     </div>
 @endsection
 
