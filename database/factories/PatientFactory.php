@@ -22,7 +22,7 @@ class PatientFactory extends Factory
         $birth_date = fake()->dateTime();
 
         return [
-            'user_id' => User::where('type', 'patient')->inRandomOrder()->first()->id,
+            'user_id' => User::where('type', 'patient')->first()->id,
             'birth_date' => $birth_date,
             'address' => fake()->address(),
             'age' => now()->diffInYears($birth_date),

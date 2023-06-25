@@ -23,5 +23,6 @@
 <link rel="stylesheet" href="{{ asset('Admin') }}/plugins/daterangepicker/daterangepicker.css">
 <!-- summernote -->
 <link rel="stylesheet" href="{{ asset('Admin') }}/plugins/summernote/summernote-bs4.min.css">
+{{-- @include('sweetalert::alert') --}}
 
 @yield('css')

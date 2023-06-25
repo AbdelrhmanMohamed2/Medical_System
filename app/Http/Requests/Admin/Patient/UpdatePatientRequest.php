@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Admin\Patient;
 
+use App\Models\Patient;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UpdatePatientRequest extends FormRequest
@@ -11,7 +12,7 @@ class UpdatePatientRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -21,8 +22,10 @@ class UpdatePatientRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
-            //
-        ];
+        return array_merge([
+            'phone' => 'required|unique:users,phone,' . $this->patient->user->id,
+            'password' => 'nullable|min:6|confirmed',
+            'password_confirmation' => 'required_with:password',
+        ], Patient::roles());
     }
 }

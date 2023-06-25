@@ -38,6 +38,8 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
         'remember_token',
+        'created_at',
+        'updated_at',
     ];
 
     /**
@@ -65,5 +67,10 @@ class User extends Authenticatable
     public function patient()
     {
         return $this->hasOne(Patient::class);
+    }
+
+    public function admin()
+    {
+        return $this->hasOne(Admin::class);
     }
 }

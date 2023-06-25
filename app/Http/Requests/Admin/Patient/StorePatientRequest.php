@@ -1,7 +1,8 @@
 <?php
+
 namespace App\Http\Requests\Admin\Patient;
 
-
+use App\Models\Patient;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StorePatientRequest extends FormRequest
@@ -21,14 +22,10 @@ class StorePatientRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
-            'name' => 'required|max:50|min:5',
-            'address' => 'nullable|min:3|max:50',
+        return array_merge([
             'phone' => 'required|unique:users,phone',
             'password' => 'required|min:6|confirmed',
             'password_confirmation' => 'required',
-            'image' => 'nullable|image|mimes:png,jpg',
-            'birth_date' => 'required|date|before_or_equal:'. now()->format('Y-m-d'),
-        ];
+        ], Patient::roles());
     }
 }

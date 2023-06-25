@@ -13,6 +13,13 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        User::factory(3)->create();
+        $users = [
+            ['email' => 'admin@medical.com', 'type' => 'admin'],
+            ['email' => 'doctor@medical.com', 'type' => 'doctor'],
+            ['email' => 'patient@medical.com', 'type' => 'patient'],
+        ];
+        foreach ($users as $user) {
+            User::factory(1)->create(['email' => $user['email'], 'type' => $user['type']]);
+        }
     }
 }

@@ -20,6 +20,7 @@
 @endsection
 
 @section('content')
+@include('Admin.layouts.search')
     <div class="row">
         <div class="col-12">
 
@@ -34,7 +35,7 @@
                             <tr>
                                 <th class="text-center" style="width: 10px">#</th>
                                 <th class="text-center">Name</th>
-                                <th class="text-center">N.examinations</th>
+                                {{-- <th class="text-center">N.examinations</th> --}}
                                 <th class="text-center">Action</th>
                             </tr>
                         </thead>
@@ -42,14 +43,18 @@
                             @foreach ($patients as $patient)
                                 <tr>
                                     <td class="text-center">{{ $patients->firstItem() + $loop->index }}</td>
-                                    <td class="text-center">{{ $patient->name }}</td>
+                                    <td class="text-center">{{ $patient->user->name }}</td>
                                     {{-- <td class="text-center">{{ $patient->patient->examinations->count() }}</td> --}}
                                     <td class="text-center">
-                                        <a href="{{ route('admin.dashboard.patients.show', $patient) }}" class="btn btn-success">Details</a>
+                                        <a href="{{ route('admin.dashboard.patients.show', $patient) }}"
+                                            class="btn btn-success">Details</a>
+                                            <a href="{{ route('admin.dashboard.examinations.index', $patient) }}"
+                                            class="btn btn-warning">Show Examinations</a>
+                                            <a href="{{ route('admin.dashboard.examinations.create', $patient) }}"
+                                            class="btn btn-primary">Add Examination</a>
                                         <a href="{{ route('admin.dashboard.patients.edit', $patient) }}"
                                             class="btn btn-info">Edit</a>
-
-                                        <form action="{{ route('admin.dashboard.patients.destroy', $patient->patient) }}"
+                                        <form action="{{ route('admin.dashboard.patients.destroy', $patient) }}"
                                             method="post" class="d-inline">
                                             @csrf
                                             @method('delete')
@@ -73,4 +78,5 @@
 @endsection
 
 @section('scripts')
+<script src="{{ asset('Admin/ajax/search.js') }}"></script>
 @endsection

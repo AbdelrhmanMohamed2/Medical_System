@@ -10,6 +10,7 @@ class Doctor extends Model
     use HasFactory;
 
     const UPLOAD_PATH = 'uploads/doctor/';
+    protected $hidden = ['created_at', 'updated_at'];
 
     protected $perPage = 10;
 

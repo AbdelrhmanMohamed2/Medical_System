@@ -1,11 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Admin;
+namespace App\Http\Requests\Admin\Profile;
 
-use App\Models\Specialty;
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreSpecialtyRequest extends FormRequest
+class UpdateImageRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,8 +21,8 @@ class StoreSpecialtyRequest extends FormRequest
      */
     public function rules(): array
     {
-        return array_merge(Specialty::ROLES, [
-            'name' => 'required|max:50|min:3|unique:specialties,name',
-        ]);
+        return [
+            'image' => 'required|mimes:png,jpg'
+        ];
     }
 }

@@ -1,11 +1,10 @@
 <?php
+namespace App\Http\Requests\Admin\Admin;
 
-namespace App\Http\Requests\Admin;
 
-use App\Models\Specialty;
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateSpecialtyRequest extends FormRequest
+class StoreAdminRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,8 +21,12 @@ class UpdateSpecialtyRequest extends FormRequest
      */
     public function rules(): array
     {
-        return array_merge(Specialty::ROLES, [
-            'name' => 'required|max:50|min:3|unique:specialties,name,' . $this->specialty->id,
-        ]);
+        return [
+            'name' => 'required|max:50|min:5',
+            'phone' => 'required|unique:users,phone',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|min:6|confirmed',
+            'password_confirmation' => 'required',
+        ];
     }
 }

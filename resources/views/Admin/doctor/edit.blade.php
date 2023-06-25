@@ -16,7 +16,7 @@
 @endsection
 
 @section('main-title')
-    Edit New Doctor
+    Edit Doctor
 @endsection
 
 @section('content')

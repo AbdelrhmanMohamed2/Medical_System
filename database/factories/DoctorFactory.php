@@ -20,7 +20,7 @@ class DoctorFactory extends Factory
     {
 
         return [
-            'user_id' =>  User::where('type', 'doctor')->inRandomOrder()->first()->id,
+            'user_id' =>  User::where('type', 'doctor')->first()->id,
             'description' => fake()->paragraph(4),
             'specialty_id' => Specialty::inRandomOrder()->first()->id,
         ];

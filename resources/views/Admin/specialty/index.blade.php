@@ -44,7 +44,7 @@
                                 <tr>
                                     <td class="text-center">{{ $specialties->firstItem() + $loop->index }}</td>
                                     <td>{{ $specialty->name }}</td>
-                                    <td class="text-center"><img width="200" src="{{ asset($specialty::UPLOAD_PATH  . ($specialty->image ?? 'default_specialty.png' ) ) }}"></td>
+                                    <td class="text-center"><img width="200" src="{{ asset($specialty::UPLOAD_PATH  . ($specialty->image ?? 'default_image.png' ) ) }}"></td>
                                     <td class="text-center">{{ $specialty->doctors_count }}</td>
                                     <td class="text-center">
 

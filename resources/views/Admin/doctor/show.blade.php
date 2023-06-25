@@ -41,7 +41,10 @@
 
                                 <ul class="list-group list-group-unbordered mb-3">
                                     <li class="list-group-item">
-                                        <b>N. Patients</b> <a class="float-right">{{ $doctor->patients->count() }}</a>
+                                        <b>N. Patients</b> <a class="float-right">{{ $doctor->patients->count() }} Patients</a>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <b>N. Examination</b> <a class="float-right">{{ $doctor->examinations->count() }} Examination</a>
                                     </li>
                                 </ul>
 

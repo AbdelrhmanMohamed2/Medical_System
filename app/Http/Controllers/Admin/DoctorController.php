@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Traits\UploadImage;
+use App\Traits\UploadFile;
 use App\Http\Controllers\Controller;
 
 use App\Models\{
@@ -18,7 +18,7 @@ use App\Http\Requests\Admin\Doctor\{
 
 class DoctorController extends Controller
 {
-    use UploadImage;
+    use UploadFile;
 
 
     public function index()
@@ -41,11 +41,11 @@ class DoctorController extends Controller
             unset($validated_data['password']);
             unset($validated_data['password_confirmation']);
         }
-        $image_name = $this->uploadImage($request, Doctor::class, $doctor->user->image);
+        $image_name = $this->uploadFile($request, Doctor::class, $doctor->user->image);
         $doctor->update($validated_data);
         $doctor->user->update(['image' => $image_name, 'type' => 'doctor'] + $validated_data);
-        toast('Doctor Updated Successfully', 'success');
-        return redirect()->back();
+        // toast('Doctor Updated Successfully', 'success');
+        return redirect()->back()->with('success', 'Doctor Updated successfully');
     }
 
     public function edit(Doctor $doctor)
@@ -56,10 +56,10 @@ class DoctorController extends Controller
 
     public function store(StoreDoctorRequest $request)
     {
-        $image_name = $this->uploadImage($request, Doctor::class);
+        $image_name = $this->uploadFile($request, Doctor::class);
         User::create(['image' => $image_name, 'type' => 'doctor'] + $request->validated())->doctor()->create($request->validated());
-        toast('Doctor Added Successfully', 'success');
-        return redirect()->back();
+        // toast('Doctor Added Successfully', 'success');
+        return redirect()->back()->with('success', 'Doctor Added successfully');
     }
 
     public function show(Doctor $doctor)
@@ -69,10 +69,10 @@ class DoctorController extends Controller
 
     public function destroy(Doctor $doctor)
     {
-        $this->deleteImage($doctor->user->image, Doctor::UPLOAD_PATH);
+        $this->deleteFile($doctor->user->image, Doctor::UPLOAD_PATH);
         $doctor->user->delete();
-        $doctor->delete();
-        toast('Doctor deleted successfully', 'success');
-        return redirect()->back();
+        // $doctor->delete();
+        // toast('Doctor deleted successfully', 'success');
+        return redirect()->back()->with('success', 'Doctor deleted successfully');
     }
 }

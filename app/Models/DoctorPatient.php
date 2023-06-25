@@ -11,6 +11,11 @@ class DoctorPatient extends Model
 
     protected $table = 'doctor_patient';
 
+    protected $fillable = [
+        'doctor_id',
+        'patient_id',
+    ];
+
     public function notes()
     {
         return $this->hasMany(Note::class);

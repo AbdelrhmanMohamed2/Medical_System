@@ -170,6 +170,9 @@ return [
         App\Providers\RouteServiceProvider::class,
         Barryvdh\Debugbar\ServiceProvider::class,
         RealRashid\SweetAlert\SweetAlertServiceProvider::class,
+        // Barryvdh\DomPDF\PDF::class,
+        Barryvdh\DomPDF\ServiceProvider::class,
+
 
     ])->toArray(),
 
@@ -188,7 +191,8 @@ return [
         // 'Example' => App\Facades\Example::class,
         'Debugbar' => Barryvdh\Debugbar\Facades\Debugbar::class,
         'Alert' => RealRashid\SweetAlert\Facades\Alert::class,
-
+        // 'PDF' => Barryvdh\DomPDF\PDF::class,
+        'PDF' => Barryvdh\DomPDF\Facade::class,
     ])->toArray(),
 
 ];

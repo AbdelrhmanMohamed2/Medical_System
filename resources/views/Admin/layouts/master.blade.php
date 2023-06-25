@@ -10,8 +10,8 @@
 
         <!-- Preloader -->
         <div class="preloader flex-column justify-content-center align-items-center">
-            <img class="animation__shake" src="{{asset('Admin')}}/dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60"
-                width="60">
+            <img class="animation__shake" src="{{ asset('Admin') }}/dist/img/AdminLTELogo.png" alt="AdminLTELogo"
+                height="60" width="60">
         </div>
 
         <!-- Navbar -->
@@ -28,7 +28,7 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="m-0">@yield('main-title')</h1>
+                            <h1 class="m-0 page-name">@yield('main-title')</h1>
                         </div><!-- /.col -->
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
@@ -48,13 +48,19 @@
 
                     <!-- /.row -->
                     <!-- Main row -->
-
+                    @if (session('success'))
+                    <div class="alert alert-success">{{ session('success') }}</div>
+                        @endif
+                        @if (session('error'))
+                        <div class="alert alert-danger">{{ session('error') }}</div>
+                        @endif
                         <!-- Left col -->
+
                         @yield('content')
                         <!-- right col -->
 
-                    <!-- /.row (main row) -->
-                </div><!-- /.container-fluid -->
+                        <!-- /.row (main row) -->
+                    </div><!-- /.container-fluid -->
             </section>
             <!-- /.content -->
         </div>

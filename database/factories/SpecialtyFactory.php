@@ -16,9 +16,10 @@ class SpecialtyFactory extends Factory
      */
     public function definition(): array
     {
+
         return [
-            'name' => fake()->name(),
-            'image' => 'default_specialty.png',
+            // 'name' => fake()->name(),
+            'image' => 'default_image.png',
         ];
     }
 }

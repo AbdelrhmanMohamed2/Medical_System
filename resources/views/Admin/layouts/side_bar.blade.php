@@ -1,6 +1,6 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="index3.html" class="brand-link">
+    <a href="{{route('admin.dashboard.index')}}" class="brand-link">
         <img src="{{ asset('Admin') }}/dist/img/AdminLTELogo.png" alt="AdminLTE Logo"
             class="brand-image img-circle elevation-3" style="opacity: .8">
         <span class="brand-text font-weight-light">Medical-System</span>
@@ -11,11 +11,11 @@
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
-                <img src="{{ asset('uploads/' . strtolower(auth()->user()->type)  . '/'. auth()->user()->image ) }}" class="img-circle elevation-2"
+                <img src="{{ asset('uploads/' . strtolower(auth()->user()->type)  . '/'. (auth()->user()->image ?? 'default_image.png') ) }}" class="img-circle elevation-2"
                     alt="User Image">
             </div>
             <div class="info">
-                <a href="#" class="d-block">{{ auth()->user()->type }} : {{ auth()->user()->name }}</a>
+                <a href="{{ route('admin.dashboard.profile')}}" class="d-block">{{ auth()->user()->type }} : {{ auth()->user()->name }}</a>
             </div>
         </div>
 
@@ -38,14 +38,14 @@
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
-                        <li class="nav-item">
+                        <li class="nav-item pl-3">
                             <a href="{{ route('admin.dashboard.doctors.index') }}" class="nav-link">
                                 <i class="fa-regular fa-hospital"></i>
                                 <p>All Doctors</p>
                             </a>
                         </li>
 
-                        <li class="nav-item">
+                        <li class="nav-item pl-3">
                             <a href="{{ route('admin.dashboard.doctors.create') }}" class="nav-link">
                                 <i class="fa-solid fa-stethoscope"></i>
                                 <p>Add New Doctor</p>
@@ -65,14 +65,14 @@
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
-                        <li class="nav-item">
+                        <li class="nav-item pl-3">
                             <a href="{{ route('admin.dashboard.patients.index') }}" class="nav-link">
                                 <i class="fa-solid fa-hospital"></i>
                                 <p>All Patients</p>
                             </a>
                         </li>
 
-                        <li class="nav-item">
+                        <li class="nav-item  pl-3">
                             <a href="{{ route('admin.dashboard.patients.create') }}" class="nav-link">
                                 <i class="fa-solid fa-bed-pulse"></i>
                                 <p>Add New Patient</p>
@@ -93,14 +93,14 @@
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
-                        <li class="nav-item">
+                        <li class="nav-item pl-3">
                             <a href="{{ route('admin.dashboard.specialty.index') }}" class="nav-link">
                                 <i class="fa-solid fa-graduation-cap"></i>
                                 <p>All Specialties</p>
                             </a>
                         </li>
 
-                        <li class="nav-item">
+                        <li class="nav-item pl-3">
                             <a href="{{ route('admin.dashboard.specialty.create') }}" class="nav-link">
                                 <i class="fa-solid fa-heart-pulse"></i>
                                 <p>Add New Speciality</p>
@@ -120,15 +120,15 @@
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="" class="nav-link">
+                        <li class="nav-item pl-3">
+                            <a href="{{ route('admin.dashboard.admins.index')}}" class="nav-link">
                                 <i class="fa-solid fa-users-gear"></i>
                                 <p>All Admins</p>
                             </a>
                         </li>
 
-                        <li class="nav-item">
-                            <a href="" class="nav-link">
+                        <li class="nav-item pl-3">
+                            <a href="{{ route('admin.dashboard.admins.create')}}" class="nav-link">
                                 <i class="fa-solid fa-user-plus"></i>
                                 <p>Add New Admin</p>
                             </a>

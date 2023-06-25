@@ -33,5 +33,6 @@
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="{{ asset('Admin') }}/dist/js/pages/dashboard.js"></script>
 <script src="https://kit.fontawesome.com/f3c9a0e81a.js" crossorigin="anonymous"></script>
-
-@include('sweetalert::alert', ['cdn' => 'https://cdn.jsdelivr.net/npm/sweetalert2@9'])
+{{-- @include('sweetalert::alert') --}}
+{{-- @include('sweetalert::alert', ['cdn' => 'https://cdn.jsdelivr.net/npm/sweetalert2@9']) --}}
+@yield('scripts')

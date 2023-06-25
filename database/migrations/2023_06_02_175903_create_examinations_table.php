@@ -14,15 +14,17 @@ return new class extends Migration
     {
         Schema::create('examinations', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('doctor_patient_id')->constrained('doctor_patient');
+            $table->foreignId('doctor_patient_id')->constrained('doctor_patient')->cascadeOnDelete();
             $table->float('price');
             $table->enum('status', [
                 'pending', 'cancelled', 'success'
             ]);
             $table->string('title')->nullable();
+            $table->string('file')->nullable();
             $table->text('description')->nullable();
             $table->float('offer')->default(0);
-            $table->timestamp('time')->useCurrent();
+            // $table->timestamp('time')->useCurrent();
+            $table->date('time');
             $table->timestamps();
         });
     }

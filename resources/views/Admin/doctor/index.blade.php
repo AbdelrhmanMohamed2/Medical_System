@@ -20,6 +20,7 @@
 @endsection
 
 @section('content')
+@include('Admin.layouts.search')
     <div class="row">
         <div class="col-12">
 
@@ -57,7 +58,8 @@
                                     {{-- <td>{{ $doctor->description }}</td>
                                     <td class="text-center">{{ $doctor->patients_count }}</td> --}}
                                     <td class="text-center">
-                                        <a href="{{ route('admin.dashboard.doctors.show', $doctor) }}" class="btn btn-success">Details</a>
+                                        <a href="{{ route('admin.dashboard.doctors.show', $doctor) }}"
+                                            class="btn btn-success">Details</a>
                                         <a href="{{ route('admin.dashboard.doctors.edit', $doctor) }}"
                                             class="btn btn-info">Edit</a>
 
@@ -86,4 +88,5 @@
 @endsection
 
 @section('scripts')
+    <script src="{{ asset('Admin/ajax/search.js') }}"></script>
 @endsection

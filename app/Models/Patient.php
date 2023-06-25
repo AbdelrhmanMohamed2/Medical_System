@@ -23,12 +23,12 @@ class Patient extends Model
     public static function roles()
     {
         return [
+
             'name' => 'required|max:50|min:5',
-            'email' => 'required|email|unique:users,email',
-            'phone' => 'required|unique:users,phone',
-            'password' => 'required|min:6|confirmed',
-            'password_confirmation' => 'required',
-            'image' => 'required|image|mimes:png,jpg',
+            'address' => 'nullable|min:3|max:50',
+            'image' => 'nullable|image|mimes:png,jpg',
+            'birth_date' => 'required|date|before_or_equal:'. now()->format('Y-m-d'),
+
         ];
     }
 

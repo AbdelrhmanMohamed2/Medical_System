@@ -8,7 +8,7 @@
 @endsection
 
 @section('page-name')
-    Doctors
+Patients
 @endsection
 
 @section('page-link')
@@ -69,7 +69,7 @@
                                         <i class="far fa-calendar-alt"></i>
                                     </span>
                                 </div>
-                                <input name="birth_date" type="date" class="form-control float-right" id="reservation">
+                                <input name="birth_date" value="{{ old('birth_date')}}" type="date" class="form-control float-right" id="reservation">
                             </div>
                             @error('birth_date')
                                 <p class="text-danger">{{ $message }}</p>

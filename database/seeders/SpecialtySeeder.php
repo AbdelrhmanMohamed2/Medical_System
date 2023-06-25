@@ -13,6 +13,9 @@ class SpecialtySeeder extends Seeder
      */
     public function run(): void
     {
-        Specialty::factory(5)->create();
+        $names = ['عيون', 'عظام', 'قلب', 'اشعة'];
+        foreach ($names as $name) {
+            Specialty::factory(1)->create(['name' => $name]);
+        }
     }
 }

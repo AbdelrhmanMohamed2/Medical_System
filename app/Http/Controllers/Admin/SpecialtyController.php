@@ -3,14 +3,13 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Specialty;
-use App\Traits\UploadImage;
+use App\Traits\UploadFile;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\StoreSpecialtyRequest;
-use App\Http\Requests\Admin\UpdateSpecialtyRequest;
+use App\Http\Requests\Admin\Specialty\{UpdateSpecialtyRequest, StoreSpecialtyRequest};
 
 class SpecialtyController extends Controller
 {
-    use UploadImage;
+    use UploadFile;
 
     public function index()
     {
@@ -30,25 +29,32 @@ class SpecialtyController extends Controller
 
     public function update(UpdateSpecialtyRequest $request, Specialty $specialty)
     {
-        $image_name = $this->uploadImage($request, Specialty::class, $specialty->image);
+        $image_name = $this->uploadFile($request, Specialty::class, $specialty->image);
         $specialty->update(['image' => $image_name] + $request->validated());
-        toast('Specialty Updated Successfully', 'success');
-        return redirect()->back();
+        // toast('Specialty Updated Successfully', 'success');
+        // Alert::success('Success Title', 'Success Message');
+
+        return redirect()->back()->with('success', 'Specialty Updated Successfully');
     }
 
     public function store(StoreSpecialtyRequest $request)
     {
-        $image_name = $this->uploadImage($request, Specialty::class);
+        $image_name = $this->uploadFile($request, Specialty::class);
         Specialty::create(['image' => $image_name] + $request->validated());
-        toast('Specialty Added Successfully', 'success');
-        return redirect()->back();
+        // toast('Specialty Added Successfully', 'success');
+        // Alert::success('Success Title', 'Success Message');
+
+        return redirect()->back()->with('success', 'Specialty Added Successfully');
     }
 
     public function destroy(Specialty $specialty)
     {
-        $this->deleteImage($specialty->image, Specialty::UPLOAD_PATH);
+        if ($specialty->doctors->count()) {
+            return redirect()->back()->with('error', 'Cant delete Specialty, Specialty Has Doctors');
+        }
+        $this->deleteFile($specialty->image, Specialty::UPLOAD_PATH);
         $specialty->delete();
-        toast('Specialty deleted successfully', 'success');
-        return redirect()->back();
+        // toast('Specialty deleted successfully', 'success');
+        return redirect()->back()->with('success', 'Specialty deleted successfully');
     }
 }
