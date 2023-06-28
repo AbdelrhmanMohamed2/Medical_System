@@ -27,6 +27,7 @@ class DatabaseSeeder extends Seeder
             DoctorPatientSeeder::class,
             NoteSeeder::class,
             ExaminationSeeder::class,
+            SettingSeeder::class,
         ]);
     }
 }

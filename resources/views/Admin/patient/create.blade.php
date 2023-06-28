@@ -8,7 +8,7 @@
 @endsection
 
 @section('page-name')
-Patients
+    Patients
 @endsection
 
 @section('page-link')
@@ -42,6 +42,14 @@ Patients
                             @enderror
                         </div>
 
+                        <div class="form-group">
+                            <label for="email">Patient Email</label>
+                            <input type="email" class="form-control" value="{{ old('email') }}" id="email"
+                                name="email" placeholder="Enter Patient email ...">
+                            @error('email')
+                                <p class="text-danger">{{ $message }}</p>
+                            @enderror
+                        </div>
 
                         <div class="form-group">
                             <label for="address">Patient Address</label>
@@ -69,7 +77,8 @@ Patients
                                         <i class="far fa-calendar-alt"></i>
                                     </span>
                                 </div>
-                                <input name="birth_date" value="{{ old('birth_date')}}" type="date" class="form-control float-right" id="reservation">
+                                <input name="birth_date" value="{{ old('birth_date') }}" type="date"
+                                    class="form-control float-right" id="reservation">
                             </div>
                             @error('birth_date')
                                 <p class="text-danger">{{ $message }}</p>

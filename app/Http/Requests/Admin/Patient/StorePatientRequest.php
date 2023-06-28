@@ -24,6 +24,7 @@ class StorePatientRequest extends FormRequest
     {
         return array_merge([
             'phone' => 'required|unique:users,phone',
+            'email' => 'required|email|unique:users,email',
             'password' => 'required|min:6|confirmed',
             'password_confirmation' => 'required',
         ], Patient::roles());

@@ -24,6 +24,7 @@ class UpdatePatientRequest extends FormRequest
     {
         return array_merge([
             'phone' => 'required|unique:users,phone,' . $this->patient->user->id,
+            'email' => 'required|email|unique:users,email,' . $this->patient->user->id,
             'password' => 'nullable|min:6|confirmed',
             'password_confirmation' => 'required_with:password',
         ], Patient::roles());

@@ -57,6 +57,14 @@
                                 {{ $patient->user->phone }}
                             </p>
                             <hr>
+
+                            <strong><i class="fa-solid fa-envelope"></i> Email</strong>
+                            <p class="text-muted">
+                                {{ $patient->user->email }}
+                            </p>
+                            <hr>
+
+
                             <strong><i class="fa-solid fa-calendar-days"></i> Birth Date</strong>
                             <p class="text-muted">
                                 {{ $patient->birth_date }}

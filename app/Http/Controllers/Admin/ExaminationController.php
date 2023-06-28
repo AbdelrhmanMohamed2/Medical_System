@@ -14,6 +14,16 @@ class ExaminationController extends Controller
 {
     use UploadFile;
 
+    public function getAllExaminations()
+    {
+        if (auth()->user()->type == 'Doctor') {
+            $examinations = DoctorPatient::where(['doctor_id' => auth()->user()->doctor->id])->with(['examinations'])->get()->pluck('examinations')->flatten();
+        } elseif (auth()->user()->type == 'Admin') {
+            $examinations = Examination::get();
+        }
+        return view('Admin.examinations.all_examinations', compact('examinations'));
+    }
+
     public function index(Patient $patient)
     {
         $examinations = $patient->examinations;
@@ -53,7 +63,7 @@ class ExaminationController extends Controller
 
     public function update(UpdateExaminationRequest $request, Examination $examination)
     {
-        $file = $this->uploadFile($request, Examination::class, input_name: 'file', old_file:$examination->file);
+        $file = $this->uploadFile($request, Examination::class, input_name: 'file', old_file: $examination->file);
         $examination->update(['file' => $file] + $request->validated());
         return redirect()->back()->with('success', 'Examination Updated Successfully');
     }
