@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>AdminLTE 3 | Log in</title>
+    <title>Medical-System | Login</title>
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet"
@@ -20,14 +20,14 @@
 <body class="hold-transition login-page">
     <div class="login-box">
         <div class="login-logo">
-            <b>Admin</b>Medical-System
+            Medical-System
         </div>
         <!-- /.login-logo -->
         <div class="card">
             <div class="card-body login-card-body">
-                <p class="login-box-msg">Sign in to Enter Dashboard</p>
+                <p class="login-box-msg">Login</p>
 
-                <form action="{{ route('admin.login') }}" method="post">
+                <form action="{{ route('login') }}" method="post">
                     {{-- <form action="{{ route('admin.login.login') }}" method="post"> --}}
                     @csrf
                     <div class="input-group mb-3">
@@ -65,12 +65,15 @@
                             @enderror
                         </div>
                         <!-- /.col -->
-                        <div class="col-4">
-                            <button type="submit" class="btn btn-primary btn-block">Sign In</button>
-                        </div>
+
+                            <button type="submit" class="btn btn-primary btn-block">Login</button>
+                       <br>
                         <!-- /.col -->
                     </div>
                 </form>
+                {{-- <hr> --}}
+
+                    {{-- <a href="" class="btn btn-info btn-block">Register</a> --}}
 
 
             </div>

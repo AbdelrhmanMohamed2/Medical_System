@@ -91,4 +91,3 @@ Route::middleware(['auth', 'IsAdmin'])->prefix('dashboard')->name('dashboard.')-
     });
 });
 
-require __DIR__ . '/auth.php';

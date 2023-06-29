@@ -29,7 +29,10 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->route('admin.dashboard.index');
+        return
+            in_array(auth()->user()->type, ['Admin', 'Doctor'])
+            ? redirect()->route('admin.dashboard.index')
+            : redirect()->route('home');
     }
 
     /**

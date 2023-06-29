@@ -16,4 +16,6 @@ class HomeController extends Controller
         $doctors = Doctor::with(['specialty', 'user'])->get();
         return view('end_user.index', compact('settings', 'specialties', 'doctors'));
     }
+
+
 }
