@@ -5,6 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Illuminate\Auth\Access\AuthorizationException;
 
 class IsAdminOrDoctor
 {
@@ -16,7 +17,7 @@ class IsAdminOrDoctor
     public function handle(Request $request, Closure $next): Response
     {
         if(!in_array(auth()->user()->type, ['Admin', 'Doctor'])){
-            return abort(401);
+            throw new AuthorizationException(message:'unauthorized');
         }
         return $next($request);
     }

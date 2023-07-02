@@ -32,7 +32,7 @@ class Examination extends Model
             'title' => 'required|string|max:100',
             'description' => 'required|string',
             'offer' => 'required|numeric|gte:0|lt:100',
-            // 'file' => 'required|mimes:png,jpg,pdf'
+            'file' => 'nullable|mimes:png,jpg,pdf'
         ];
     }
 

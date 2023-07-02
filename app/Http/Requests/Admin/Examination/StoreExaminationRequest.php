@@ -32,10 +32,8 @@ class StoreExaminationRequest extends FormRequest
 
     public function prepareForValidation()
     {
-        if (auth()->user()->type === 'Doctor') {
-            $this->merge([
-                'doctor_id' => auth()->user()->doctor->id,
-            ]);
-        }
+        $this->merge([
+            'doctor_id' => auth()->user()->doctor->id,
+        ]);
     }
 }
