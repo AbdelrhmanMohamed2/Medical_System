@@ -146,6 +146,20 @@
                         </ul>
                     </li>
 
+                    {{-- Messages --}}
+                    <li class="nav-item">
+                        <a href="{{ route('admin.dashboard.messages.index') }}" class="nav-link">
+                            {{-- <i class="nav-icon fas fa-chart-pie"></i> --}}
+                            {{-- <i class="fa-solid fa-user-doctor"></i> --}}
+                            <i class="fa-solid fa-message"></i>
+                            {{-- <i class="fa-solid fa-user-doctor" style="color: #ffffff;"></i> --}}
+                            <p>
+                                Messages
+                                {{-- <i class="right fas fa-angle-left"></i> --}}
+                            </p>
+                        </a>
+                    </li>
+
                     {{-- Settengs --}}
                     <li class="nav-item">
                         <a href="{{ route('admin.dashboard.settings.index') }}" class="nav-link">

@@ -15,7 +15,7 @@
         @include('end_user.partials.departments')
 
         @include('end_user.partials.doctors')
-        {{-- @include('end_user.partials.contact') --}}
+        @include('end_user.partials.contact')
     </main><!-- End #main -->
 
     @include('end_user.partials.footer')

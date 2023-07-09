@@ -33,7 +33,7 @@
                 </nav><!-- .navbar -->
                 <form action="{{ route('logout') }}" method="post">
                     @csrf
-                    <input type="submit" value="Logout" class="btn btn-danger">
+                    <input type="submit" value="Logout" class="nav-link text-danger">
                 </form>
             @endauth
 

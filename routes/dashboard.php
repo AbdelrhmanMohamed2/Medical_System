@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\{
     SpecialtyController,
     PatientController,
     SettingController,
+    MessageController,
 };
 // use App\Http\Controllers\PatientController;
 use App\Http\Controllers\SearchController;
@@ -55,6 +56,13 @@ Route::middleware(['auth', 'IsAdmin'])->prefix('dashboard')->name('dashboard.')-
 
     Route::get('/filter/', [SearchController::class, 'filter'])->name('filter');
 
+    Route::controller(MessageController::class)->prefix('messages')->name('messages.')->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('/{message}', 'show')->name('show');
+        Route::delete('/{message}', 'destroy')->name('destroy');
+        // Route::post('/messages', 'store');
+    });
+
     Route::controller(SettingController::class)->prefix('settings')->name('settings.')->group(function () {
         Route::get('/',  'index')->name('index');
         Route::patch('/update/{setting}', 'update')->name('update');
@@ -90,4 +98,3 @@ Route::middleware(['auth', 'IsAdmin'])->prefix('dashboard')->name('dashboard.')-
         Route::delete('/{user}', 'destroy')->name('destroy');
     });
 });
-
